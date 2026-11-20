@@ -21,7 +21,7 @@ export const TEXT = {
       linked: "Холбогдсон",
       cont: "Үргэлжлүүлэхийн тулд дарна уу",
       comps: ["Мэдээллийн систем", "Дизайн", "Вэб хөгжүүлэлт"],
-      res: ["Figma", "Illustrator", "Photoshop", "React", "Supabase", "англи хэл", "япон хэл", "кофе ☕"],
+      res: ["ширээ", "сандал", "компьютер", "гар", "дэнлүү", "ургамал", "ном", "шагай", "кофе ☕"],
     },
     apps: { about: "Миний тухай", projects: "Бүтээлүүд", skills: "Ур чадвар", contact: "Холбоо барих", readme: "readme.txt", shagai: "Шагай" },
     name: "НАМЖИЛМАА",
@@ -68,6 +68,7 @@ export const TEXT = {
       "  • Дээд мөрний MN / EN — хэл, ☾ / ☀ — шөнө, өдөр солих\n\n" +
       "P.S. Гар дээрээ  shagai  гэж бичээд үзээрэй 🎲\n\n",
     cv: "CV татах",
+    room: { start: "Хаана ч дарж эхлүүлнэ", hint: "Чирж эргүүлж харж болно", power: "Унтраах" },
     shagai: {
       title: "Шагай",
       intro: "Монгол уламжлалт тоглоом. 4 шагай орхиж, юу буухыг хараарай!",
@@ -87,7 +88,7 @@ export const TEXT = {
       linked: "Linked",
       cont: "Click to continue",
       comps: ["Information systems", "Design", "Web development"],
-      res: ["Figma", "Illustrator", "Photoshop", "React", "Supabase", "English", "Japanese", "coffee ☕"],
+      res: ["desk", "chair", "computer", "keyboard", "lamp", "plant", "books", "shagai", "coffee ☕"],
     },
     apps: { about: "About me", projects: "Projects", skills: "Skills", contact: "Contact", readme: "readme.txt", shagai: "Shagai" },
     name: "NAMJILMAA",
@@ -134,6 +135,7 @@ export const TEXT = {
       "  • MN / EN switches language, ☾ / ☀ switches night and day\n\n" +
       "P.S. Try typing  shagai  on your keyboard 🎲\n\n",
     cv: "Download CV",
+    room: { start: "Click anywhere to start", hint: "Drag to look around", power: "Shut down" },
     shagai: {
       title: "Shagai",
       intro: "A traditional Mongolian game. Throw four ankle bones and see how they land!",
@@ -152,8 +154,18 @@ export const TEXT = {
    repo: GitHub репозиторийн нэр (PROFILE.github-тэй нийлнэ) эсвэл бүтэн холбоос */
 export const PROJECTS = [
   {
-    id: "ism",
+    id: "os",
     color: "#f2b3a6",
+    image: "/projects/namjaa-os.svg",
+    stack: ["React", "Three.js", "Vite", "Vercel"],
+    live: "https://namjilmaa-portfolio.vercel.app",
+    repo: "portfolio",
+    mn: { title: "NamjaaOS", type: "Хичээлийн даалгавар · SWE334", desc: "Яг одоо үзэж байгаа энэ портфолио. 3D өрөөнөөс эхэлж, компьютерийн дэлгэц рүү ороход 90-ээд оны үйлдлийн систем шиг desktop нээгдэнэ. Цонх чирэх, хоёр хэл, шөнө/өдөр горим, нуугдмал «Шагай» тоглоомтой.", role: "Бие даан хөгжүүлсэн" },
+    en: { title: "NamjaaOS", type: "Course assignment · SWE334", desc: "The portfolio you're looking at. It starts in a 3D room, then zooms into the computer screen where a 90s-style desktop opens — draggable windows, two languages, night/day mode and a hidden Shagai game.", role: "Built solo" },
+  },
+  {
+    id: "ism",
+    color: "#c9d6ea",
     image: "/projects/ism-museum.svg",
     stack: ["React", "Vite", "Supabase", "Vercel"],
     live: "https://ism-museum.vercel.app",
@@ -177,7 +189,7 @@ export const PROJECTS = [
     image: "/projects/bloom-beauty.svg",
     stack: ["React", "Supabase", "Figma"],
     live: "",
-    repo: "beauty-shop",
+    repo: "", // ⚠️ beauty-shop-оо GitHub-д нийтэд нээлттэй оруулаад "beauty-shop" гэж бичнэ
     mn: { title: "Bloom Beauty", type: "Улирлын төсөл · SWE334", desc: "Гоо сайхны бүтээгдэхүүний онлайн дэлгүүр: нэвтрэлт, бүтээгдэхүүний CRUD, сагс, Supabase RLS-ээр өгөгдлийн хамгаалалт. ERD, Figma wireframe-ээс эхэлсэн.", role: "Дизайн, хөгжүүлэлт" },
     en: { title: "Bloom Beauty", type: "Term project · SWE334", desc: "A beauty e-shop with sign-in, product CRUD, a cart and Supabase RLS for data security. Started from an ERD and Figma wireframes.", role: "Design and development" },
   },
@@ -191,32 +203,23 @@ export const PROJECTS = [
     mn: { title: "StudyRemind", type: "Хувийн төсөл", desc: "1-р курсын оюутнуудад зориулсан Google Calendar маягийн хуанли: даалгаврын хугацааг нэг дор харуулж, дуусахаас өмнө сануулна.", role: "Санаа, дизайн, хөгжүүлэлт" },
     en: { title: "StudyRemind", type: "Personal project", desc: "A Google-Calendar-style planner for first-year students: every assignment deadline in one place, with reminders before they're due.", role: "Idea, design, development" },
   },
-  {
-    id: "btec",
-    color: "#c9d6ea",
-    image: "/projects/btec-figma.svg",
-    stack: ["Figma", "UI/UX"],
-    live: "",
-    repo: "",
-    mn: { title: "BTEC вэб дизайн", type: "UI/UX дизайн", desc: "СЭЗИС-ийн BTEC төвийн вэбсайтын дизайныг Figma дээр боловсруулж, монгол хэл дээрх хувилбарыг гаргасан. Компьютер болон гар утасны дэлгэц.", role: "UI/UX дизайн" },
-    en: { title: "BTEC web design", type: "UI/UX design", desc: "Designed UFE's BTEC Centre website in Figma, including its Mongolian version, for desktop and mobile screens.", role: "UI/UX design" },
-  },
 ];
 
 /* ---------- Ур чадвар ----------
    used: тухайн ур чадварыг ашигласан бүтээлийн id */
 export const SKILLS = {
   design: [
-    { name: "Figma", used: ["bloom", "btec"] },
+    { name: "Figma", used: ["bloom"] },
     { name: "Adobe Illustrator", used: [] },
     { name: "Adobe Photoshop", used: [] },
   ],
   dev: [
-    { name: "HTML / CSS", used: ["ism", "bloom", "remind"] },
-    { name: "JavaScript", used: ["ism", "bloom", "remind"] },
-    { name: "React", used: ["ism", "bloom", "remind"] },
+    { name: "HTML / CSS", used: ["os", "ism", "bloom", "remind"] },
+    { name: "JavaScript", used: ["os", "ism", "bloom", "remind"] },
+    { name: "React", used: ["os", "ism", "bloom", "remind"] },
     { name: "Supabase", used: ["ism", "bloom"] },
-    { name: "Git / GitHub", used: ["ism", "bloom"] },
-    { name: "Vercel", used: ["ism"] },
+    { name: "Git / GitHub", used: ["os", "ism"] },
+    { name: "Three.js", used: ["os"] },
+    { name: "Vercel", used: ["os", "ism"] },
   ],
 };

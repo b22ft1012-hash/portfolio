@@ -3,8 +3,8 @@ import { useLang } from "../lib/lang";
 import { Logo } from "./icons";
 
 /* Дээд мөр: идэвхтэй апп-ын нэр, дуу, хэл солих, цаг */
-export default function TopBar({ title, soundOn, onSound, theme, onTheme, onLogo }) {
-  const { lang, toggle } = useLang();
+export default function TopBar({ title, soundOn, onSound, theme, onTheme, onLogo, onPower }) {
+  const { lang, t, toggle } = useLang();
   const [now, setNow] = useState(new Date());
 
   useEffect(() => {
@@ -23,6 +23,8 @@ export default function TopBar({ title, soundOn, onSound, theme, onTheme, onLogo
         {/* Лого дээр давхар дарахад нууц "Шагай" апп нээгдэнэ */}
         <span className="topbar__logo" onDoubleClick={onLogo} title="NamjaaOS"><Logo /></span>
         <span className="chip topbar__title">{title}</span>
+        {/* Унтраах: 3D өрөө рүү буцна */}
+        <button className="chip" onClick={onPower} title={t.room.power} aria-label={t.room.power}>⏻</button>
       </div>
       <div className="topbar__right">
         <button className="chip" onClick={onSound} aria-pressed={soundOn} title="Sound">{soundOn ? "♪ ON" : "♪ OFF"}</button>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 /* =========================================================
    useWindows — цонхны менежер (custom hook)
@@ -21,9 +21,28 @@ const SIZES = {
 };
 
 let zTop = 10;
+const ICONS_W = 110; // баруун талын icon-уудын өргөн
+
+// Цонхыг дэлгэцийн дотор байлгах (дэлгэцийн хэмжээ өөрчлөгдөхөд ч)
+function clamp(win) {
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+  const w = Math.min(win.w, vw - 20);
+  const h = Math.min(win.h, vh - 110);
+  const x = Math.min(Math.max(10, win.x), Math.max(10, vw - ICONS_W - w));
+  const y = Math.min(Math.max(40, win.y), Math.max(40, vh - 80 - h));
+  return { ...win, w, h, x, y };
+}
 
 export function useWindows() {
   const [wins, setWins] = useState([]);
+
+  // Цонхны хэмжээ өөрчлөгдөхөд (жишээ нь утсаа эргүүлэх) цонхнуудыг дэлгэц дотор буцааж оруулна
+  useEffect(() => {
+    const onResize = () => setWins((ws) => ws.map(clamp));
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
 
   function open(app, props = {}) {
     const id = props.id ? `${app}-${props.id}` : app;
@@ -34,13 +53,16 @@ export function useWindows() {
       const [bw, bh] = SIZES[app] || [520, 440];
       const vw = window.innerWidth;
       const vh = window.innerHeight;
-      const w = Math.min(bw, vw - 140);
-      const h = Math.min(bh, vh - 130);
+      const w = Math.min(bw, vw - ICONS_W - 20);
+      // Өндөр дэлгэцэнд (таблет) цонхыг дэлгэцийн 62%-иас багагүй өндөртэй болгоно
+      // (жижиг агуулгатай "Бүтээлүүд", "Шагай" цонхыг томруулахгүй)
+      const grow = app !== "projects" && app !== "shagai";
+      const h = Math.min(grow ? Math.max(bh, Math.round(vh * 0.62)) : bh, vh - 130);
       const n = ws.length;
-      // Шинэ цонх бүрийг бага зэрэг доош, баруун тийш шилжүүлж байрлуулна (cascade)
-      const x = Math.max(10, (vw - w) / 2 - 90 + n * 28);
-      const y = Math.min(vh - h - 80, 50 + n * 26);
-      return [...ws, { id, app, props, x, y: Math.max(40, y), w, h, z: ++zTop, min: false, max: false }];
+      // Баруун талын icon-уудыг хасаад үлдсэн талбайн голд, дараагийнхыг бага зэрэг шилжүүлж байрлуулна
+      const x = (vw - ICONS_W - w) / 2 + n * 26;
+      const y = 50 + n * 24;
+      return [...ws, clamp({ id, app, props, x, y, w, h, z: ++zTop, min: false, max: false })];
     });
   }
 

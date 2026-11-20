@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { useLang } from "./lib/lang";
 import { useWindows } from "./lib/useWindows";
 import { sound } from "./lib/sound";
@@ -13,9 +13,14 @@ import Contact from "./apps/Contact";
 import Readme from "./apps/Readme";
 import Shagai from "./apps/Shagai";
 
+// 3D өрөөг тусад нь ачаална (Three.js том тул эхний ачаалал хурдан байна)
+const Room = lazy(() => import("./room/Room"));
+
 export default function App() {
   const { lang, t } = useLang();
-  const [booted, setBooted] = useState(false);
+  // Үе шат: "boot" (ачаалал) → "room" (3D өрөө) → "desktop"
+  const [stage, setStage] = useState("boot");
+  const booted = stage === "desktop";
   const [soundOn, setSoundOn] = useState(false);
   const [theme, setTheme] = useState(() => {
     try { return localStorage.getItem("theme") || "night"; } catch { return "night"; }
@@ -46,10 +51,12 @@ export default function App() {
     wm.open(app, props);
   }
 
-  function start() {
-    setBooted(true);
+  // Өрөөнөөс дэлгэц рүү орсны дараа desktop асна
+  function enterDesktop(app = "about") {
+    setStage("desktop");
     sound.startup();
-    wm.open("about");
+    if (!wm.wins.length) wm.open("about");
+    if (app !== "about") wm.open(app);
   }
 
   // Цонх бүрийн гарчиг ба агуулга
@@ -67,7 +74,13 @@ export default function App() {
     }
   };
 
-  if (!booted) return <Boot onDone={start} />;
+  if (stage === "boot") return <Boot onDone={() => setStage("room")} />;
+  if (stage === "room")
+    return (
+      <Suspense fallback={<div className="room room--loading">NamjaaOS…</div>}>
+        <Room theme={theme} onEnter={enterDesktop} />
+      </Suspense>
+    );
 
   return (
     <div className="desktop">
@@ -78,6 +91,7 @@ export default function App() {
         theme={theme}
         onTheme={() => setTheme((x) => (x === "night" ? "day" : "night"))}
         onLogo={() => openApp("shagai")}
+        onPower={() => { sound.close(); setStage("room"); }}
       />
       <DesktopIcons onOpen={openApp} />
 

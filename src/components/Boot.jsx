@@ -8,6 +8,9 @@ export default function Boot({ onDone }) {
   const [step, setStep] = useState(0);
   const ready = step >= total;
 
+  // 3D өрөөний кодыг ачааллын үеэр урьдчилан татаж эхэлнэ
+  useEffect(() => { import("../room/Room"); }, []);
+
   useEffect(() => {
     if (ready) return;
     const id = setTimeout(() => setStep((s) => s + 1), 260);

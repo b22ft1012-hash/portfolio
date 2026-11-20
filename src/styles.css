@@ -232,3 +232,15 @@ h1, h2, h3 { font-family: var(--serif); margin: 0; }
 
 /* Өдрийн горимд идэвхтэй товчны өнгийг тодруулна */
 [data-theme="day"] .chip:hover, [data-theme="day"] .chip b.on { color: var(--rose-dk); border-color: var(--rose-dk); }
+
+/* ---------- 3D өрөө ---------- */
+.room { position: fixed; inset: 0; background: #0d0d10; cursor: pointer; }
+.room--loading { display: grid; place-items: center; color: #e8e4dc; font: 14px var(--mono); }
+.room canvas { display: block; }
+.room__start {
+  position: absolute; left: 50%; bottom: 12%; transform: translateX(-50%);
+  background: #000; color: #f6f2ea; padding: 8px 16px; font: 15px var(--mono); white-space: nowrap; pointer-events: none;
+}
+.room__start b { display: inline-block; width: 12px; height: 3px; background: #f6f2ea; vertical-align: middle; animation: blink 1s steps(1) infinite; }
+.room__name { position: absolute; left: 16px; top: 14px; color: #f6f2ea; font: 12px var(--mono); letter-spacing: 0.1em; opacity: 0.7; pointer-events: none; mix-blend-mode: difference; }
+.room.is-zooming { cursor: default; }
