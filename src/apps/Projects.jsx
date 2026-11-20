@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useLang } from "../lib/lang";
 import { PROJECTS, PROFILE } from "../data/content";
 import { Folder } from "../components/icons";
@@ -38,9 +39,13 @@ export function ProjectDetail({ project: p }) {
       <span className="btn btn--off">{label} · {t.soon}</span>
     );
 
+  // Галерейгаас сонгосон зураг дээд хэсэгт томоор гарна
+  const images = [p.image, ...(p.gallery || [])];
+  const [shown, setShown] = useState(p.image);
+
   return (
     <article className="project">
-      <img src={p.image} alt={c.title} />
+      <img src={shown} alt={c.title} className="project__hero" />
       <div className="project__body">
         <p className="meta">{c.type}</p>
         <h2>{c.title}</h2>
@@ -51,9 +56,19 @@ export function ProjectDetail({ project: p }) {
           <dd className="tags">{p.stack.map((s) => <span key={s}>{s}</span>)}</dd>
         </dl>
         <div className="project__links">
-          {link(p.live, t.live)}
+          {/* liveLabel өгсөн бол (жишээ нь Facebook хуудас) тэр нэрээр харагдана */}
+          {link(p.live, c.liveLabel || t.live)}
           {link(repoUrl(p), t.code)}
         </div>
+        {images.length > 1 && (
+          <div className="gallery">
+            {images.map((src) => (
+              <button key={src} className={src === shown ? "is-on" : ""} onClick={() => setShown(src)} aria-label="Зураг харах">
+                <img src={src} alt="" loading="lazy" />
+              </button>
+            ))}
+          </div>
+        )}
       </div>
     </article>
   );

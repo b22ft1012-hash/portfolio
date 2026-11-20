@@ -212,10 +212,10 @@ export const PROJECTS = [
     color: "#f0d999",
     image: "/projects/sparkday.svg",
     stack: ["Web", "UI/UX", "Teamwork"],
-    live: "",
+    live: "https://www.facebook.com/Sparkday2025/",
     repo: "",
-    mn: { title: "SparkDay 2026", type: "Тэмцээн · Шилдэг 18 баг", desc: "Монгол уламжлалт тоглоомуудыг вебээр танилцуулах санаагаар SparkDay 2026 тэмцээнд оролцож, шилдэг 18 багийн нэг болсон.", role: "Багийн гишүүн" },
-    en: { title: "SparkDay 2026", type: "Competition · Top 18", desc: "A web project introducing Mongolian traditional games. Our team was one of the top 18 at SparkDay 2026.", role: "Team member" },
+    mn: { title: "SparkDay 2026", liveLabel: "Facebook хуудас", type: "Тэмцээн · Шилдэг 18 баг", desc: "Монгол уламжлалт тоглоомуудыг вебээр танилцуулах санаагаар SparkDay 2026 тэмцээнд оролцож, шилдэг 18 багийн нэг болсон.", role: "Багийн гишүүн" },
+    en: { title: "SparkDay 2026", liveLabel: "Facebook page", type: "Competition · Top 18", desc: "A web project introducing Mongolian traditional games. Our team was one of the top 18 at SparkDay 2026.", role: "Team member" },
   },
   {
     id: "bloom",
@@ -223,19 +223,26 @@ export const PROJECTS = [
     image: "/projects/bloom-beauty.svg",
     stack: ["React", "Supabase", "Figma"],
     live: "",
-    repo: "", // ⚠️ beauty-shop-оо GitHub-д нийтэд нээлттэй оруулаад "beauty-shop" гэж бичнэ
+    repo: "beauty-shop",
     mn: { title: "Bloom Beauty", type: "Улирлын төсөл · SWE334", desc: "Гоо сайхны бүтээгдэхүүний онлайн дэлгүүр: нэвтрэлт, бүтээгдэхүүний CRUD, сагс, Supabase RLS-ээр өгөгдлийн хамгаалалт. ERD, Figma wireframe-ээс эхэлсэн.", role: "Дизайн, хөгжүүлэлт" },
     en: { title: "Bloom Beauty", type: "Term project · SWE334", desc: "A beauty e-shop with sign-in, product CRUD, a cart and Supabase RLS for data security. Started from an ERD and Figma wireframes.", role: "Design and development" },
   },
   {
     id: "remind",
     color: "#a9c4b0",
-    image: "/projects/studyremind.svg",
-    stack: ["React", "JavaScript"],
+    image: "/projects/studyremind/sr-calendar.jpg",
+    // Дэлгэрэнгүй цонхонд харагдах нэмэлт дэлгэцүүд
+    gallery: [
+      "/projects/studyremind/sr-login.jpg",
+      "/projects/studyremind/sr-add.jpg",
+      "/projects/studyremind/sr-sync.jpg",
+      "/projects/studyremind/sr-mobile.jpg",
+    ],
+    stack: ["UI/UX", "React", "Responsive"],
     live: "",
     repo: "",
-    mn: { title: "StudyRemind", type: "Хувийн төсөл", desc: "1-р курсын оюутнуудад зориулсан Google Calendar маягийн хуанли: даалгаврын хугацааг нэг дор харуулж, дуусахаас өмнө сануулна.", role: "Санаа, дизайн, хөгжүүлэлт" },
-    en: { title: "StudyRemind", type: "Personal project", desc: "A Google-Calendar-style planner for first-year students: every assignment deadline in one place, with reminders before they're due.", role: "Idea, design, development" },
+    mn: { title: "Даалгавар Хуанли", type: "Хувийн төсөл · UI дизайн", desc: "1-р курсын оюутнуудад зориулсан даалгаврын хуанли. Moodle, Teams, MyEnglishLab-ын даалгавар, шалгалтыг нэг хуанлид цуглуулж, хугацаа дуусахаас өмнө сануулна. Сар/7 хоног/жагсаалт харагдац, даалгавар гараар нэмэх, хийх алхмын checklist, холболт ба сануулгын тохиргоо, гар утасны хувилбартай.", role: "Санаа, UI/UX дизайн, хөгжүүлэлт" },
+    en: { title: "Assignment Calendar", type: "Personal project · UI design", desc: "An assignment calendar for first-year students. It gathers assignments and exams from Moodle, Teams and MyEnglishLab into one calendar and reminds you before they're due. Month/week/list views, manual task entry with checklists, sync and reminder settings, and a mobile version.", role: "Idea, UI/UX design, development" },
   },
 ];
 
