@@ -1,0 +1,234 @@
+/* =========================================================
+   NamjaaOS — styles.css
+   Ретро desktop: хар дэвсгэр + зөөлөн өнгөнүүд
+   ========================================================= */
+
+:root {
+  --desk: #0d0d0f;
+  --bar: #1b1b1f;
+  --line: #3a3a40;
+  --chrome: #cfc9c0;      /* цонхны хүрээ */
+  --chrome-hi: #f1ece4;   /* гэрэлтэй ирмэг */
+  --chrome-lo: #8d877e;   /* сүүдэртэй ирмэг */
+  --paper: #f6f2ea;       /* цонхны дотор */
+  --ink: #1d1b19;
+  --muted: #6f6a63;
+  --on-desk: #d9d4cc;
+  --rose: #f2b3a6;        /* идэвхтэй цонх */
+  --rose-dk: #c97f72;
+  --lilac: #b8acd9;
+  --sage: #a9c4b0;
+  --butter: #f0d999;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+  --serif: "PT Serif", Georgia, serif;
+  --dot: rgba(255, 255, 255, 0.035);
+  --dock: #1f1f24;
+  --dock-btn: #2a2a30;
+  --chip: #26262b;
+}
+
+/* Өдрийн горим: desktop, дээд мөр, dock цайвар болно */
+[data-theme="day"] {
+  --desk: #d9d3c7;
+  --bar: #ece7de;
+  --line: #9c958a;
+  --on-desk: #1d1b19;
+  --dot: rgba(0, 0, 0, 0.06);
+  --dock: #e4ded3;
+  --dock-btn: #f1ece4;
+  --chip: #f6f2ea;
+}
+
+* { box-sizing: border-box; }
+html, body, #root { margin: 0; height: 100%; }
+body { background: #000; color: var(--ink); font: 13px/1.5 var(--mono); overflow: hidden; -webkit-font-smoothing: antialiased; }
+button { font: inherit; color: inherit; }
+h1, h2, h3 { font-family: var(--serif); margin: 0; }
+::selection { background: var(--rose); color: var(--ink); }
+:focus-visible { outline: 2px dashed var(--rose); outline-offset: 2px; }
+
+/* ---------- Нийтлэг ---------- */
+.chip { background: var(--chip); border: 1px solid var(--line); color: var(--on-desk); padding: 1px 8px; cursor: pointer; white-space: nowrap; }
+.chip:hover { border-color: var(--rose); color: var(--rose); }
+.chip b { font-weight: 400; opacity: 0.5; }
+.chip b.on { opacity: 1; color: var(--rose); font-weight: 600; }
+
+/* Ретро "товойсон" товч */
+.btn {
+  display: inline-block; padding: 3px 10px; cursor: pointer; text-decoration: none; color: var(--ink);
+  background: var(--chrome); border: 1px solid #000;
+  box-shadow: inset 1px 1px 0 var(--chrome-hi), inset -1px -1px 0 var(--chrome-lo);
+}
+.btn:hover { background: var(--chrome-hi); }
+.btn:active { box-shadow: inset -1px -1px 0 var(--chrome-hi), inset 1px 1px 0 var(--chrome-lo); }
+.btn--pri { background: var(--rose); }
+.btn--pri:hover { background: #f7c6bc; }
+.btn--off { opacity: 0.5; cursor: not-allowed; }
+.meta { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin: 0; }
+
+/* ---------- Ачааллын дэлгэц ---------- */
+.boot { position: fixed; inset: 0; background: #000; color: #e8e4dc; padding: 28px 32px; line-height: 1.45; cursor: pointer; overflow: auto; }
+.boot__hd { display: grid; grid-template-columns: auto auto; gap: 0 40px; width: max-content; font-weight: 600; }
+.boot h3 { font-size: 15px; margin: 22px 0 8px; }
+.boot ul { list-style: none; margin: 0; padding-left: 30px; white-space: pre; }
+.boot .ok { color: var(--sage); }
+.boot__cont { margin-top: 28px; }
+.boot__cont b { background: #e8e4dc; color: #000; padding: 0 6px; animation: blink 1s steps(1) infinite; }
+.boot__lang { position: absolute; top: 24px; right: 32px; }
+@keyframes blink { 50% { opacity: 0; } }
+
+/* ---------- Desktop ---------- */
+.desktop {
+  position: fixed; inset: 0; background-color: var(--desk);
+  /* жижиг цэгэн хээ — ретро дэлгэцийн мэдрэмж */
+  background-image: radial-gradient(var(--dot) 1px, transparent 1px);
+  transition: background-color 0.4s;
+  background-size: 4px 4px;
+  animation: power 0.5s ease-out;
+}
+@keyframes power { from { filter: brightness(3) saturate(0); transform: scaleY(0.02); } 60% { transform: scaleY(1); } }
+
+.topbar { position: absolute; inset: 0 0 auto; height: 30px; z-index: 9000; display: flex; align-items: center; justify-content: space-between; padding: 0 8px; background: var(--bar); border-bottom: 1px solid #000; color: var(--on-desk); }
+.topbar__left, .topbar__right { display: flex; align-items: center; gap: 8px; white-space: nowrap; }
+.topbar__title { cursor: default; }
+.topbar__clock { padding-left: 4px; }
+
+/* Баруун талын icon-ууд */
+.icons { position: absolute; top: 46px; right: 14px; display: flex; flex-direction: column; gap: 12px; }
+.icon { width: 88px; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 4px; background: none; border: 0; cursor: pointer; color: var(--on-desk); font-size: 11px; text-align: center; }
+.icon svg { width: 40px; height: 40px; transition: transform 0.15s; }
+.icon:hover svg { transform: translateY(-2px); }
+.icon:hover span, .icon:focus-visible span { background: var(--rose); color: var(--ink); }
+.icon--dark { color: var(--ink); width: auto; }
+
+/* Dock */
+.dock { position: absolute; left: 50%; bottom: 10px; transform: translateX(-50%); z-index: 8000; display: flex; gap: 6px; padding: 6px 8px; background: var(--dock); border: 1px solid var(--line); box-shadow: inset 1px 1px 0 var(--dock-btn), 0 10px 30px rgba(0, 0, 0, 0.6); }
+.dock__slot { display: flex; gap: 6px; }
+.dock__sep { width: 1px; background: var(--line); margin: 0 4px; }
+.dock button { position: relative; width: 48px; height: 48px; display: grid; place-items: center; background: var(--dock-btn); border: 1px solid var(--line); cursor: pointer; transition: transform 0.15s; }
+.dock button:hover { transform: translateY(-6px); }
+.dock button svg { width: 34px; height: 34px; }
+.dock button.is-open::after { content: ""; position: absolute; bottom: -6px; width: 4px; height: 4px; background: var(--rose); }
+.dock__tip { position: absolute; bottom: 58px; white-space: nowrap; background: var(--paper); color: var(--ink); border: 1px solid #000; padding: 1px 6px; font-size: 11px; opacity: 0; pointer-events: none; transition: opacity 0.15s; }
+.dock button:hover .dock__tip { opacity: 1; }
+
+/* ---------- Цонх ---------- */
+.win {
+  position: absolute; display: flex; flex-direction: column; min-width: 280px; min-height: 160px;
+  background: var(--chrome); border: 1px solid #000;
+  box-shadow: inset 1px 1px 0 var(--chrome-hi), inset -1px -1px 0 var(--chrome-lo), 6px 8px 0 rgba(0, 0, 0, 0.45);
+  resize: both; overflow: hidden;   /* баруун доод булангаас томруулж болно */
+  animation: winopen 0.16s ease-out;
+}
+@keyframes winopen { from { transform: scale(0.94); opacity: 0; } }
+.win.max { left: 0 !important; top: 30px !important; width: 100% !important; height: calc(100% - 30px) !important; resize: none; }
+.win__title { height: 24px; flex: none; display: flex; align-items: center; gap: 8px; padding: 0 4px 0 8px; cursor: grab; user-select: none; touch-action: none; }
+.win__title:active { cursor: grabbing; }
+.win__name { font-weight: 600; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 60%; }
+.win__stripes { flex: 1; height: 12px; background: repeating-linear-gradient(var(--chrome-lo) 0 1px, transparent 1px 3px); }
+.win.active .win__title { background: var(--rose); }
+.win.active .win__stripes { background: repeating-linear-gradient(var(--rose-dk) 0 1px, transparent 1px 3px); }
+.ctl { display: flex; gap: 2px; }
+.ctl button { width: 16px; height: 16px; padding: 0; font-size: 10px; line-height: 12px; cursor: pointer; background: var(--chrome); border: 1px solid #000; box-shadow: inset 1px 1px 0 var(--chrome-hi); }
+.ctl button:hover { background: var(--chrome-hi); }
+.win__body { flex: 1; margin: 0 4px 4px; background: var(--paper); border: 1px solid #000; overflow: auto; position: relative; }
+
+/* ---------- Миний тухай ---------- */
+.about__hero { min-height: 280px; display: grid; place-content: center; text-align: center; padding: 30px 20px; border-bottom: 1px dashed #cfc8bd; }
+.about__hero h1 { font-size: 40px; letter-spacing: 0.05em; }
+.about__role { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; margin: 6px 0 2px; }
+.about__line { font: italic 15px var(--serif); color: var(--muted); margin: 6px 0 16px; }
+.about__nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
+.about__bio { display: grid; grid-template-columns: 1.15fr 1fr; gap: 24px; padding: 22px 26px 28px; }
+.about__bio p { font: 15px/1.65 var(--serif); margin: 0 0 10px; }
+.about__bio .about__full { font: 700 18px var(--serif); }
+.about__bio h3 { font-size: 17px; margin-bottom: 10px; }
+.timeline { list-style: none; margin: 0; padding: 0; border-left: 2px solid var(--lilac); }
+.timeline li { position: relative; padding: 0 0 12px 14px; display: grid; }
+.timeline li::before { content: ""; position: absolute; left: -6px; top: 4px; width: 10px; height: 10px; background: var(--lilac); border: 1px solid #000; }
+.timeline__when { font-size: 11px; color: var(--rose-dk); }
+.timeline span:last-child { color: var(--muted); font-size: 12px; }
+
+/* ---------- Бүтээлүүд ---------- */
+.folder { min-height: 100%; display: flex; flex-direction: column; }
+.folder__grid { flex: 1; display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 14px; padding: 18px; align-content: start; }
+.statusbar { position: sticky; bottom: 0; padding: 4px 10px; font-size: 11px; color: var(--muted); background: var(--paper); border-top: 1px solid #cfc8bd; }
+.project img { width: 100%; display: block; border-bottom: 1px solid #000; }
+.project__body { padding: 20px 24px 24px; }
+.project h2 { font-size: 26px; margin: 2px 0 8px; }
+.project__desc { font: 15px/1.65 var(--serif); margin: 0 0 14px; }
+.kv { display: grid; grid-template-columns: 110px 1fr; gap: 6px 10px; font-size: 12px; margin: 0 0 16px; }
+.kv dt { color: var(--muted); }
+.kv dd { margin: 0; }
+.tags { display: flex; flex-wrap: wrap; gap: 4px; }
+.tags span { border: 1px solid #000; background: var(--butter); padding: 0 6px; font-size: 11px; }
+.project__links { display: flex; flex-wrap: wrap; gap: 6px; }
+
+/* ---------- Ур чадвар ---------- */
+.skills { padding: 18px 22px; display: grid; gap: 20px; }
+.skills__group h3 { font-size: 18px; margin-bottom: 8px; border-bottom: 1px solid #cfc8bd; padding-bottom: 4px; }
+.skill { display: grid; grid-template-columns: 12px 160px 1fr; gap: 10px; align-items: baseline; padding: 4px 0; }
+.skill__dot { width: 10px; height: 10px; border: 1px solid #000; align-self: center; }
+.skill__used { font-size: 11px; color: var(--muted); }
+.lang { display: grid; grid-template-columns: 120px auto 1fr; gap: 12px; align-items: center; padding: 4px 0; }
+.lang__bar { display: flex; gap: 3px; }
+.lang__bar i { width: 14px; height: 12px; border: 1px solid #000; background: #fff; }
+.lang__bar i.on { background: var(--sage); }
+.lang__lvl { font-size: 12px; color: var(--muted); }
+
+/* ---------- Холбоо барих ---------- */
+.mail__toolbar { display: flex; gap: 6px; padding: 6px; background: var(--chrome); border-bottom: 1px solid #000; }
+.mail__row { display: grid; grid-template-columns: 80px 1fr; align-items: center; border-bottom: 1px solid #cfc8bd; }
+.mail__row span { padding: 6px 10px; font-size: 12px; color: var(--muted); }
+.mail input, .mail textarea { font: inherit; color: var(--ink); background: transparent; border: 0; outline: none; padding: 8px 10px 8px 0; min-width: 0; }
+.mail textarea { display: block; width: 100%; min-height: 140px; padding: 12px; resize: vertical; font: 15px/1.6 var(--serif); border-bottom: 1px solid #cfc8bd; }
+.mail__links { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; padding: 12px; }
+.mail__links .meta { width: 100%; }
+
+/* ---------- readme ---------- */
+.readme { padding: 16px 18px 20px; }
+.readme pre { font: 13px/1.6 var(--mono); white-space: pre-wrap; margin: 0 0 12px; }
+
+/* ---------- Шагай (easter egg) ---------- */
+.topbar__logo { display: grid; cursor: pointer; }
+.shagai { padding: 16px 18px; display: grid; gap: 14px; }
+.shagai__intro { font: 15px/1.5 var(--serif); margin: 0; }
+.shagai__table { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 18px 10px; background: #6b4a3a; border: 1px solid #000; box-shadow: inset 0 0 0 4px #8a5f4a; }
+.shagai figure { margin: 0; text-align: center; color: #f6f2ea; font-size: 12px; }
+.bone { width: 100%; max-width: 72px; filter: drop-shadow(2px 3px 0 rgba(0, 0, 0, 0.35)); }
+.bone.is-rolling { animation: tumble 0.65s ease-in-out; }
+@keyframes tumble {
+  0% { transform: translateY(0) rotate(0); }
+  30% { transform: translateY(-26px) rotate(160deg); }
+  60% { transform: translateY(4px) rotate(320deg); }
+  80% { transform: translateY(-6px) rotate(350deg); }
+  100% { transform: translateY(0) rotate(360deg); }
+}
+.shagai__win { margin: 0; padding: 6px 10px; background: var(--butter); border: 1px solid #000; font-weight: 600; }
+.shagai__bar { display: flex; align-items: center; justify-content: space-between; }
+
+/* ---------- Гар утас ---------- */
+@media (max-width: 720px) {
+  .icons, .topbar__date { display: none; }
+  .topbar__title { max-width: 44vw; overflow: hidden; text-overflow: ellipsis; }
+  /* цонх бүх өргөнөөр нээгдэнэ, чирэх шаардлагагүй */
+  .win { left: 6px !important; top: 38px !important; width: calc(100% - 12px) !important; height: calc(100% - 118px) !important; resize: none; }
+  .win.max { left: 0 !important; top: 30px !important; width: 100% !important; height: calc(100% - 30px) !important; }
+  .about__bio { grid-template-columns: 1fr; padding: 18px; }
+  .about__hero h1 { font-size: 30px; }
+  .skill { grid-template-columns: 12px 1fr; }
+  .skill__used { grid-column: 2; }
+  .lang { grid-template-columns: 100px auto 1fr; }
+  .dock { max-width: calc(100% - 12px); }
+  .dock button { width: 44px; height: 44px; }
+  .boot { font-size: 11px; padding: 18px; }
+  .boot ul { padding-left: 12px; }
+  .boot__lang { top: 14px; right: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+/* Өдрийн горимд идэвхтэй товчны өнгийг тодруулна */
+[data-theme="day"] .chip:hover, [data-theme="day"] .chip b.on { color: var(--rose-dk); border-color: var(--rose-dk); }
