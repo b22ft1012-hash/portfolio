@@ -57,30 +57,86 @@ function useSkyTexture(night) {
   );
 }
 
-// Хана дээрх зурагт хуудас (SparkDay)
-function usePosterTexture() {
+// Хананы хуанли: тухайн сарын өдрүүд, өнгөрсөн өдөр зураастай, deadline-ууд улаанаар дугуйлсан
+const DEADLINES = [
+  { day: 9, label: "SWE334" },
+  { day: 17, label: "Лаб" },
+  { day: 24, label: "Хамгаалалт" },
+  { day: 28, label: "Тайлан" },
+];
+
+function useCalendarTexture() {
   return useMemo(
     () =>
-      canvasTexture(300, 400, (g, w, h) => {
+      // 2 дахин их нягтралтай зурж, текстийг тод болгоно
+      canvasTexture(600, 800, (g) => {
+        g.scale(2, 2);
+        const w = 300;
+        const h = 400;
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = now.getMonth();
+        const today = now.getDate();
+        const days = new Date(year, month + 1, 0).getDate();
+        const first = (new Date(year, month, 1).getDay() + 6) % 7; // Даваа гарагаас эхэлнэ
+
+        // Цаас ба дээд хэсэг
         g.fillStyle = "#f6f2ea";
         g.fillRect(0, 0, w, h);
-        g.fillStyle = "#b8acd9";
-        g.fillRect(20, 20, w - 40, 230);
-        // 4 шагай
-        g.fillStyle = "#f2e3c8";
-        g.strokeStyle = "#1d1b19";
-        g.lineWidth = 3;
-        [[85, 100], [215, 100], [85, 180], [215, 180]].forEach(([x, y]) => {
-          g.beginPath(); g.ellipse(x, y, 42, 30, 0, 0, Math.PI * 2); g.fill(); g.stroke();
-        });
-        g.fillStyle = "#1d1b19";
-        g.font = "bold 34px Georgia, serif";
-        g.textAlign = "center";
-        g.fillText("SparkDay", w / 2, 300);
-        g.font = "20px monospace";
-        g.fillText("2026 · TOP 18", w / 2, 336);
         g.fillStyle = "#f2b3a6";
-        g.fillRect(20, 362, w - 40, 14);
+        g.fillRect(0, 22, w, 64);
+        // Өлгөөрийн цагирагууд
+        g.fillStyle = "#3a3a40";
+        for (let x = 40; x < w; x += 44) g.fillRect(x, 6, 8, 26);
+        g.fillStyle = "#1d1b19";
+        g.textAlign = "center";
+        g.font = "bold 30px Georgia, serif";
+        g.fillText(`${month + 1}-р сар`, w / 2, 62);
+        g.font = "14px monospace";
+        g.fillText(String(year), w / 2, 80);
+
+        // Гаригууд
+        const cols = ["Да", "Мя", "Лх", "Пү", "Ба", "Бя", "Ня"];
+        const cw = (w - 20) / 7;
+        g.font = "bold 13px monospace";
+        g.fillStyle = "#6f6a63";
+        cols.forEach((c, i) => g.fillText(c, 10 + cw * i + cw / 2, 108));
+
+        // Өдрүүд
+        g.font = "16px monospace";
+        for (let d = 1; d <= days; d++) {
+          const idx = first + d - 1;
+          const cx = 10 + cw * (idx % 7) + cw / 2;
+          const cy = 136 + Math.floor(idx / 7) * 44;
+          g.fillStyle = "#1d1b19";
+          g.fillText(String(d), cx, cy);
+          // Өнгөрсөн өдрийг зураасаар дарна
+          if (d < today) {
+            g.strokeStyle = "rgba(29,27,25,0.45)";
+            g.lineWidth = 2;
+            g.beginPath(); g.moveTo(cx - 12, cy + 4); g.lineTo(cx + 12, cy - 14); g.stroke();
+          }
+          // Deadline — улаан бийрээр дугуйлсан мэт
+          const dl = DEADLINES.find((x) => x.day === d);
+          if (dl) {
+            g.strokeStyle = "#d9304f";
+            g.lineWidth = 3;
+            g.beginPath();
+            g.ellipse(cx, cy - 5, 18, 15, -0.2, 0, Math.PI * 1.9);
+            g.stroke();
+            g.fillStyle = "#d9304f";
+            g.font = "bold 10px monospace";
+            g.fillText(dl.label, cx, cy + 14);
+            g.font = "16px monospace";
+          }
+          // Өнөөдөр
+          if (d === today) {
+            g.fillStyle = "rgba(240,217,153,0.6)";
+            g.fillRect(cx - 17, cy - 20, 34, 28);
+            g.fillStyle = "#1d1b19";
+            g.fillText(String(d), cx, cy);
+          }
+        }
       }),
     []
   );
@@ -88,7 +144,7 @@ function usePosterTexture() {
 
 export function RoomShell({ night }) {
   const sky = useSkyTexture(night);
-  const poster = usePosterTexture();
+  const calendar = useCalendarTexture();
   const wall = night ? "#2a2730" : "#efe9df";
   const floor = night ? "#1f1b20" : "#cdbfae";
 
@@ -144,15 +200,15 @@ export function RoomShell({ night }) {
         </mesh>
       </group>
 
-      {/* Хана дээрх зурагт хуудас */}
-      <group position={[-0.85, 1.62, -0.885]} rotation={[0, 0, 0.02]}>
-        <mesh>
-          <boxGeometry args={[0.5, 0.66, 0.02]} />
-          <meshStandardMaterial color="#1d1b19" />
+      {/* Хананы хуанли (deadline-ууд дугуйлсан) — хадаас дээр өлгөөтэй */}
+      <group position={[-0.85, 1.62, -0.885]} rotation={[0, 0, 0.03]}>
+        <mesh position={[0, 0.34, 0.02]}>
+          <sphereGeometry args={[0.012, 10, 10]} />
+          <meshStandardMaterial color="#8d877e" metalness={0.6} roughness={0.3} />
         </mesh>
-        <mesh position={[0, 0, 0.011]}>
+        <mesh position={[0, 0, 0.004]}>
           <planeGeometry args={[0.45, 0.6]} />
-          <meshStandardMaterial map={poster} roughness={0.8} />
+          <meshStandardMaterial map={calendar} roughness={0.85} />
         </mesh>
       </group>
 
