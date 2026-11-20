@@ -21,7 +21,6 @@ const SIZES = {
 };
 
 let zTop = 10;
-const ICONS_W = 110; // баруун талын icon-уудын өргөн
 
 // Цонхыг дэлгэцийн дотор байлгах (дэлгэцийн хэмжээ өөрчлөгдөхөд ч)
 function clamp(win) {
@@ -29,7 +28,7 @@ function clamp(win) {
   const vh = window.innerHeight;
   const w = Math.min(win.w, vw - 20);
   const h = Math.min(win.h, vh - 110);
-  const x = Math.min(Math.max(10, win.x), Math.max(10, vw - ICONS_W - w));
+  const x = Math.min(Math.max(10, win.x), Math.max(10, vw - w));
   const y = Math.min(Math.max(40, win.y), Math.max(40, vh - 80 - h));
   return { ...win, w, h, x, y };
 }
@@ -53,14 +52,14 @@ export function useWindows() {
       const [bw, bh] = SIZES[app] || [520, 440];
       const vw = window.innerWidth;
       const vh = window.innerHeight;
-      const w = Math.min(bw, vw - ICONS_W - 20);
+      const w = Math.min(bw, vw - 20);
       // Өндөр дэлгэцэнд (таблет) цонхыг дэлгэцийн 62%-иас багагүй өндөртэй болгоно
       // (жижиг агуулгатай "Бүтээлүүд", "Шагай" цонхыг томруулахгүй)
       const grow = app !== "projects" && app !== "shagai";
       const h = Math.min(grow ? Math.max(bh, Math.round(vh * 0.62)) : bh, vh - 130);
       const n = ws.length;
-      // Баруун талын icon-уудыг хасаад үлдсэн талбайн голд, дараагийнхыг бага зэрэг шилжүүлж байрлуулна
-      const x = (vw - ICONS_W - w) / 2 + n * 26;
+      // Дэлгэцийн голд, дараагийн цонхыг бага зэрэг шилжүүлж байрлуулна
+      const x = (vw - w) / 2 + n * 26;
       const y = 50 + n * 24;
       return [...ws, clamp({ id, app, props, x, y, w, h, z: ++zTop, min: false, max: false })];
     });

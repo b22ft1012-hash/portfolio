@@ -46,7 +46,7 @@ const ORDER = ["horse", "camel", "sheep", "goat"];
 
 /* Буусан шагайнаас мэрэг гаргах:
    - 4 нь ижил → тусгай мэрэг
-   - 4 нь өөр (дөрвөн мал бүрэн) → маш сайн ёр
+   - 4 нь өөр (дөрвөн бэрх) → маш азтай
    - бусад үед → хамгийн олон буусан тал + хэдэн морь буусан */
 function readFortune(bones, f) {
   const count = Object.fromEntries(ORDER.map((k) => [k, bones.filter((b) => b === k).length]));

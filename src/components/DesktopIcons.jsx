@@ -3,21 +3,6 @@ import { useLang } from "../lib/lang";
 
 export const APPS = ["about", "projects", "skills", "contact", "readme"];
 
-/* Баруун талын icon-ууд */
-export function DesktopIcons({ onOpen }) {
-  const { t } = useLang();
-  return (
-    <nav className="icons" aria-label="Desktop">
-      {APPS.map((a) => (
-        <button key={a} className="icon" onClick={() => onOpen(a)}>
-          {AppIcon[a]}
-          <span>{t.apps[a]}</span>
-        </button>
-      ))}
-    </nav>
-  );
-}
-
 /* Доод талын dock — нээлттэй апп-ын доор жижиг цэг гарна */
 export function Dock({ onOpen, openApps }) {
   const { t } = useLang();

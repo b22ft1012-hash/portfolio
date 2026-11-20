@@ -79,7 +79,7 @@ export const TEXT = {
       meanings: { horse: "хурд, амжилт", camel: "тэвчээр, бат бөх", sheep: "амар амгалан", goat: "эрч хүч, сониуч зан" },
       resultTitle: "Шагайн мэрэг",
       fortune: {
-        allDiff: "Дөрвөн мал бүрэн буулаа! Бүх зүйл тэнцвэртэй — маш сайн ёр 🌟",
+        allDiff: "Дөрвөн бэрх буулаа! Бүх зүйл тэнцвэртэй — маш азтай байна 🌟",
         four: {
           horse: "Дөрвөн морь! Хамгийн азтай нь. Бүх deadline-аа амжина 🐎",
           camel: "Дөрвөн тэмээ! Тэвчээр ялна — хамгийн урт даалгавар ч дуусна 🐫",
@@ -163,7 +163,7 @@ export const TEXT = {
       meanings: { horse: "speed, success", camel: "patience, strength", sheep: "peace, calm", goat: "energy, curiosity" },
       resultTitle: "Your shagai fortune",
       fortune: {
-        allDiff: "All four animals! Everything is in balance — a very good sign 🌟",
+        allDiff: "Four berkh — all four sides are different! Everything is in balance — a very good sign 🌟",
         four: {
           horse: "Four horses! The luckiest throw. You'll meet every deadline 🐎",
           camel: "Four camels! Patience wins — even the longest assignment gets done 🐫",
@@ -241,8 +241,8 @@ export const PROJECTS = [
     stack: ["UI/UX", "React", "Responsive"],
     live: "",
     repo: "",
-    mn: { title: "Даалгавар Хуанли", type: "Хувийн төсөл · UI дизайн", desc: "1-р курсын оюутнуудад зориулсан даалгаврын хуанли. Moodle, Teams, MyEnglishLab-ын даалгавар, шалгалтыг нэг хуанлид цуглуулж, хугацаа дуусахаас өмнө сануулна. Сар/7 хоног/жагсаалт харагдац, даалгавар гараар нэмэх, хийх алхмын checklist, холболт ба сануулгын тохиргоо, гар утасны хувилбартай.", role: "Санаа, UI/UX дизайн, хөгжүүлэлт" },
-    en: { title: "Assignment Calendar", type: "Personal project · UI design", desc: "An assignment calendar for first-year students. It gathers assignments and exams from Moodle, Teams and MyEnglishLab into one calendar and reminds you before they're due. Month/week/list views, manual task entry with checklists, sync and reminder settings, and a mobile version.", role: "Idea, UI/UX design, development" },
+    mn: { title: "StudyReminder", type: "Хувийн төсөл · UI дизайн", desc: "1-р курсын оюутнуудад зориулсан даалгаврын хуанли. Moodle, Teams, MyEnglishLab-ын даалгавар, шалгалтыг нэг хуанлид цуглуулж, хугацаа дуусахаас өмнө сануулна. Сар/7 хоног/жагсаалт харагдац, даалгавар гараар нэмэх, хийх алхмын checklist, холболт ба сануулгын тохиргоо, гар утасны хувилбартай.", role: "Санаа, UI/UX дизайн, хөгжүүлэлт" },
+    en: { title: "StudyReminder", type: "Personal project · UI design", desc: "An assignment calendar for first-year students. It gathers assignments and exams from Moodle, Teams and MyEnglishLab into one calendar and reminds you before they're due. Month/week/list views, manual task entry with checklists, sync and reminder settings, and a mobile version.", role: "Idea, UI/UX design, development" },
   },
 ];
 

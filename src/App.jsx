@@ -5,7 +5,7 @@ import { sound } from "./lib/sound";
 import Boot from "./components/Boot";
 import TopBar from "./components/TopBar";
 import Window from "./components/Window";
-import { DesktopIcons, Dock } from "./components/DesktopIcons";
+import { Dock } from "./components/DesktopIcons";
 import About from "./apps/About";
 import { Projects, ProjectDetail } from "./apps/Projects";
 import Skills from "./apps/Skills";
@@ -93,7 +93,6 @@ export default function App() {
         onLogo={() => openApp("shagai")}
         onPower={() => { sound.close(); setStage("room"); }}
       />
-      <DesktopIcons onOpen={openApp} />
 
       {wm.wins.map((w) => (
         <Window
