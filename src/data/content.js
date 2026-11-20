@@ -8,7 +8,7 @@ export const PROFILE = {
   facebook: "https://www.facebook.com/e.namjilmaa.2025",
   github: "b22ft1012-hash",
   linkedin: "", // бүтэн холбоос
-  cv: "",       // CV-гээ public/ хавтаст хийгээд "/cv.pdf" гэж бичвэл татах товч идэвхжинэ
+  cv: "/cv.pdf", // public/cv.pdf — утасны дугааргүй хувилбар
 };
 
 /* ---------- Бүх текст: mn ба en ---------- */
@@ -31,7 +31,6 @@ export const TEXT = {
     bio: [
       "Сайн байна уу! Би Намжилмаа — Санхүү Эдийн Засгийн Их Сургуулийн Мэдээллийн системийн менежментийн оюутан.",
       "Шинийг сурах эрмэлзэлтэй, идэвхтэй, бүтээлч сэтгэлгээтэй. Онолын мэдлэгээ практикт хэрэгжүүлж, ур чадвараа хөгжүүлэхийг зорьдог.",
-      "Дизайн (Figma, Illustrator, Photoshop) болон вэб хөгжүүлэлтийг (React) хослуулан хэрэглэгчдэд ойлгомжтой систем бүтээх сонирхолтой.",
     ],
     timelineTitle: "Замнал",
     timeline: [
@@ -75,8 +74,26 @@ export const TEXT = {
       roll: "Орхих",
       sides: { horse: "Морь", camel: "Тэмээ", sheep: "Хонь", goat: "Ямаа" },
       rolls: "Орхисон",
-      four: "Дөрвөн {x}! Маш ховор, азтай байна 🎉",
       found: "Нууц апп-ыг оллоо! 🎲",
+      legendTitle: "Шагайн 4 тал",
+      meanings: { horse: "хурд, амжилт", camel: "тэвчээр, бат бөх", sheep: "амар амгалан", goat: "эрч хүч, сониуч зан" },
+      resultTitle: "Шагайн мэрэг",
+      fortune: {
+        allDiff: "Дөрвөн мал бүрэн буулаа! Бүх зүйл тэнцвэртэй — маш сайн ёр 🌟",
+        four: {
+          horse: "Дөрвөн морь! Хамгийн азтай нь. Бүх deadline-аа амжина 🐎",
+          camel: "Дөрвөн тэмээ! Тэвчээр ялна — хамгийн урт даалгавар ч дуусна 🐫",
+          sheep: "Дөрвөн хонь! Тайван, амар амгалан өдөр байна 🐑",
+          goat: "Дөрвөн ямаа! Шинэ санаа, эрч хүчээр дүүрэн өдөр 🐐",
+        },
+        major: {
+          horse: "Морь давамгайлж байна — өнөөдөр хурдан амжилт гаргана.",
+          camel: "Тэмээ давамгайлж байна — яаралгүй, тэвчээртэй ажилла.",
+          sheep: "Хонь давамгайлж байна — найз нөхөдтэйгөө эв найртай өдөр.",
+          goat: "Ямаа давамгайлж байна — сониуч зангаа дагаж шинэ зүйл сур.",
+        },
+        horses: ["Морь буугаагүй — дараагийн удаа аз таарна.", "1 морь — бага зэрэг аз дагана.", "2 морь — сайхан өдөр болно.", "3 морь — маш азтай!"],
+      },
     },
   },
 
@@ -98,7 +115,6 @@ export const TEXT = {
     bio: [
       "Hi! I'm Namjilmaa — an Information Systems Management student at the Financial and Economic University of Mongolia.",
       "I'm eager to learn, active and creative. I like putting theory into practice and growing my skills along the way.",
-      "I enjoy combining design (Figma, Illustrator, Photoshop) with web development (React) to build systems people find easy to use.",
     ],
     timelineTitle: "Journey",
     timeline: [
@@ -142,8 +158,26 @@ export const TEXT = {
       roll: "Throw",
       sides: { horse: "Horse", camel: "Camel", sheep: "Sheep", goat: "Goat" },
       rolls: "Throws",
-      four: "Four {x}s! Very rare — lucky you 🎉",
       found: "You found the secret app! 🎲",
+      legendTitle: "The 4 sides of a shagai",
+      meanings: { horse: "speed, success", camel: "patience, strength", sheep: "peace, calm", goat: "energy, curiosity" },
+      resultTitle: "Your shagai fortune",
+      fortune: {
+        allDiff: "All four animals! Everything is in balance — a very good sign 🌟",
+        four: {
+          horse: "Four horses! The luckiest throw. You'll meet every deadline 🐎",
+          camel: "Four camels! Patience wins — even the longest assignment gets done 🐫",
+          sheep: "Four sheep! A calm and peaceful day ahead 🐑",
+          goat: "Four goats! A day full of new ideas and energy 🐐",
+        },
+        major: {
+          horse: "Horses lead — quick wins are coming today.",
+          camel: "Camels lead — take it slow and steady.",
+          sheep: "Sheep lead — a harmonious day with friends.",
+          goat: "Goats lead — follow your curiosity and learn something new.",
+        },
+        horses: ["No horses — luck comes next time.", "1 horse — a little luck is with you.", "2 horses — a nice day ahead.", "3 horses — very lucky!"],
+      },
     },
   },
 };

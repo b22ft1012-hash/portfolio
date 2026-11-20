@@ -17,7 +17,7 @@ const SIZES = {
   skills: [520, 520],
   contact: [500, 500],
   readme: [460, 460],
-  shagai: [460, 380],
+  shagai: [480, 540],
 };
 
 let zTop = 10;

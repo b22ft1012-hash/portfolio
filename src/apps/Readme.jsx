@@ -7,7 +7,7 @@ export default function Readme() {
     <div className="readme">
       <pre>{t.readme}</pre>
       {PROFILE.cv ? (
-        <a className="btn btn--pri" href={PROFILE.cv} download>⬇ {t.cv}</a>
+        <a className="btn btn--pri" href={PROFILE.cv} download="Namjilmaa_Erdene-Ochir_CV.pdf">⬇ {t.cv}</a>
       ) : (
         <span className="btn btn--off">⬇ {t.cv} · {t.soon}</span>
       )}

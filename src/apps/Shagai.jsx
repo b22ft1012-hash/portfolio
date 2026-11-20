@@ -42,6 +42,20 @@ function Bone({ side, rolling, i }) {
   );
 }
 
+const ORDER = ["horse", "camel", "sheep", "goat"];
+
+/* Буусан шагайнаас мэрэг гаргах:
+   - 4 нь ижил → тусгай мэрэг
+   - 4 нь өөр (дөрвөн мал бүрэн) → маш сайн ёр
+   - бусад үед → хамгийн олон буусан тал + хэдэн морь буусан */
+function readFortune(bones, f) {
+  const count = Object.fromEntries(ORDER.map((k) => [k, bones.filter((b) => b === k).length]));
+  if (bones.every((b) => b === bones[0])) return { count, text: [f.four[bones[0]]] };
+  if (ORDER.every((k) => count[k] === 1)) return { count, text: [f.allDiff] };
+  const top = ORDER.reduce((a, b) => (count[b] > count[a] ? b : a));
+  return { count, text: [f.major[top], f.horses[count.horse]] };
+}
+
 export default function Shagai() {
   const { t } = useLang();
   const s = t.shagai;
@@ -62,7 +76,7 @@ export default function Shagai() {
     }, 650);
   }
 
-  const allSame = !rolling && count > 0 && bones.every((b) => b === bones[0]);
+  const result = !rolling && count > 0 ? readFortune(bones, s.fortune) : null;
 
   return (
     <div className="shagai">
@@ -75,11 +89,29 @@ export default function Shagai() {
           </figure>
         ))}
       </div>
-      {allSame && <p className="shagai__win">{s.four.replace("{x}", s.sides[bones[0]])}</p>}
       <div className="shagai__bar">
         <button className="btn btn--pri" onClick={roll} disabled={rolling}>🎲 {s.roll}</button>
         <span className="meta">{s.rolls}: {count}</span>
       </div>
+
+      {result ? (
+        /* Орхисны дараа: тоо ба мэрэг */
+        <section className="shagai__result">
+          <h3>{s.resultTitle}</h3>
+          <p className="shagai__count">
+            {ORDER.filter((k) => result.count[k]).map((k) => `${s.sides[k]} ×${result.count[k]}`).join(" · ")}
+          </p>
+          {result.text.map((line) => <p key={line}>{line}</p>)}
+        </section>
+      ) : (
+        /* Орхихоос өмнө: 4 талын утга */
+        <section className="shagai__result">
+          <h3>{s.legendTitle}</h3>
+          <ul className="shagai__legend">
+            {ORDER.map((k) => <li key={k}><b>{s.sides[k]}</b> — {s.meanings[k]}</li>)}
+          </ul>
+        </section>
+      )}
     </div>
   );
 }

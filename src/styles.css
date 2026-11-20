@@ -204,7 +204,12 @@ h1, h2, h3 { font-family: var(--serif); margin: 0; }
   80% { transform: translateY(-6px) rotate(350deg); }
   100% { transform: translateY(0) rotate(360deg); }
 }
-.shagai__win { margin: 0; padding: 6px 10px; background: var(--butter); border: 1px solid #000; font-weight: 600; }
+.shagai__result { border: 1px solid #000; background: #fff; padding: 10px 14px; box-shadow: 3px 3px 0 var(--butter); animation: winopen 0.2s ease-out; }
+.shagai__result h3 { font-size: 16px; margin-bottom: 6px; }
+.shagai__result p { margin: 0 0 6px; font: 15px/1.5 var(--serif); }
+.shagai__result .meta { margin: 6px 0 0; font: 11px var(--mono); }
+.shagai__count { font: 600 12px var(--mono) !important; color: var(--rose-dk); }
+.shagai__legend { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 4px 12px; font-size: 12px; }
 .shagai__bar { display: flex; align-items: center; justify-content: space-between; }
 
 /* ---------- Гар утас ---------- */
