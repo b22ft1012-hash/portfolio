@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400"><defs><pattern id="g" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="#f2a7b8" stroke-opacity=".09"/></pattern></defs><rect width="640" height="400" fill="#1e1e22"/><rect width="640" height="400" fill="url(#g)"/><rect x="40" y="30" width="560" height="340" rx="12" fill="#151518" stroke="#f2a7b8" stroke-width="2"/><path d="M40 66H600" stroke="#f2a7b8" stroke-opacity=".5"/><circle cx="62" cy="48" r="5" fill="#ff6b6b"/><circle cx="80" cy="48" r="5" fill="#e8c27a"/><circle cx="98" cy="48" r="5" fill="#4ade80"/>
+<text x="64" y="98" font-family="sans-serif" font-size="22" font-weight="700" fill="#f6ece6">Bloom <tspan fill="#ff9ec0">Beauty</tspan></text>
+<!-- сагс -->
+<path d="M536 82h8l6 22h30l6-16h-40" fill="none" stroke="#f2a7b8" stroke-width="2.5" stroke-linejoin="round"/><circle cx="556" cy="112" r="3" fill="#f2a7b8"/><circle cx="576" cy="112" r="3" fill="#f2a7b8"/><circle cx="584" cy="80" r="9" fill="#ff9ec0"/><text x="584" y="84" font-family="IBM Plex Mono, monospace" font-size="10" fill="#151518" text-anchor="middle" font-weight="700">3</text>
+<!-- бүтээгдэхүүний картууд -->
+<g fill="#2c2c32" stroke="#f2a7b8" stroke-opacity=".6"><rect x="64" y="130" width="150" height="210" rx="10"/><rect x="245" y="130" width="150" height="210" rx="10"/><rect x="426" y="130" width="150" height="210" rx="10"/></g>
+<!-- шил 1 -->
+<rect x="122" y="150" width="34" height="18" rx="3" fill="#e8c27a"/><rect x="110" y="168" width="58" height="92" rx="14" fill="#ff9ec0" fill-opacity=".85"/><rect x="122" y="196" width="34" height="30" rx="4" fill="#fff" fill-opacity=".8"/>
+<!-- шил 2 -->
+<rect x="312" y="152" width="16" height="30" rx="3" fill="#f6ece6"/><path d="M296 182h48l6 78h-60z" fill="#f2a7b8" fill-opacity=".8"/>
+<!-- шил 3 -->
+<rect x="486" y="160" width="30" height="96" rx="15" fill="#cdb1ff"/><rect x="486" y="160" width="30" height="26" rx="8" fill="#e8c27a"/>
+<g fill="#f6ece6"><rect x="82" y="276" width="96" height="9" rx="4"/><rect x="263" y="276" width="80" height="9" rx="4"/><rect x="444" y="276" width="104" height="9" rx="4"/></g>
+<g font-family="IBM Plex Mono, monospace" font-size="14" font-weight="700" fill="#e8c27a"><text x="82" y="318">₮45,000</text><text x="263" y="318">₮32,900</text><text x="444" y="318">₮28,500</text></g>
+</svg>
